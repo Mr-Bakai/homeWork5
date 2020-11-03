@@ -17,16 +17,13 @@ public class Downloader extends Thread {
         try {
             semaphore.acquire();
 
-            System.out.println("----------next " + this.getName() + "is allowed to download ------------------");
+            System.out.println("\n----------next " + this.getName() + "is allowed to download ------------------");
+            sleep(500);
 
             for (int i = 1; i < 6; i++) {
                 mB = mB + 100;
                 System.out.println("\n Downloader " + id + " got " + mB + "mB" + "(100mB/sec)");
-
                 sleep(1000);
-
-                cdl.countDown();
-                cdl.await();
             }
             semaphore.release();
         } catch (Exception e) {

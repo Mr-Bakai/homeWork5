@@ -9,7 +9,6 @@ public class Main {
 
         CountDownLatch cdl = new CountDownLatch(1);
         try {
-
             Uploader ud = new Uploader("Uploader", cdl, 500, 20);
             ud.start();
             ud.join();
@@ -18,14 +17,11 @@ public class Main {
             cdl.await();
             //System.out.println(cdl.getCount() + " --=======================");
 
-
             Semaphore sp = new Semaphore(3);
-
             for (int i = 1; i < 11; i++) {
                 Downloader dw = new Downloader(i, sp, cdl);
                 dw.start();
             }
-
         } catch (Exception e) {
         }
     }
