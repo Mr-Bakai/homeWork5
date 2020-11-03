@@ -30,7 +30,7 @@ public class Uploader extends Thread {
                 fileSize = fileSize - 20;
                 mB = mB + 20;
                 System.out.print("Uploading: " + i + "% " + animationChars[i % 11] + "\r");
-                sleep(100);
+                sleep(150);
             }
             System.out.println("Uploading : Done ☑️ ");
             sleep(1000);
