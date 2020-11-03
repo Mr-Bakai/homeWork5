@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         CountDownLatch cdl = new CountDownLatch(1);
+        CountDownLatch cdd = new CountDownLatch(10);
         try {
             Uploader ud = new Uploader("Uploader", cdl, 500, 20);
             ud.start();
@@ -19,9 +20,11 @@ public class Main {
 
             Semaphore sp = new Semaphore(3);
             for (int i = 1; i < 11; i++) {
-                Downloader dw = new Downloader(i, sp, cdl);
+                Downloader dw = new Downloader(i, sp, cdd);
                 dw.start();
             }
+            cdd.await();
+            ud.progressBar();
         } catch (Exception e) {
         }
     }

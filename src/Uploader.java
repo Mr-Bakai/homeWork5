@@ -26,23 +26,34 @@ public class Uploader extends Thread {
     public void run() {
         try {
             //Progress bar for uploading
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 100; i++){
                 fileSize = fileSize - 20;
                 mB = mB + 20;
                 System.out.print("Uploading: " + i + "% " + animationChars[i % 11] + "\r");
-                sleep(200);
+                sleep(100);
             }
-            System.out.println("Uploading is : Done ☑️ ");
+            System.out.println("Uploading : Done ☑️ ");
             sleep(1000);
+            for (int i = 0; i < 11; i++) {
+                System.out.print("Preparing file for download: " + i + "% " + animationChars[i % 11] + "\r");
+                sleep(300);
+            }
+            System.out.println("Preparation : done ☑️ ");
+            sleep(1000);
+        } catch (Exception e) {
+        }
+    }
 
-            // Progress bar for deleting file
+    public void progressBar(){
+        try {
             for (int i = 0; i < 11; i++) {
                 System.out.print("Deleting file from server: " + i + "% " + animationChars[i % 11] + "\r");
                 sleep(300);
             }
             sleep(1000);
             System.out.println("File has been deleted ☑️");
-        } catch (Exception e) {
+        } catch (Exception e ){
+
         }
     }
 }

@@ -5,15 +5,15 @@ public class Downloader extends Thread {
     private int id;
     private Semaphore semaphore;
     private int mB = 0;
-    private CountDownLatch cdl;
+    private CountDownLatch cdd;
 
     public Downloader(int id, Semaphore semaphore, CountDownLatch cdl) {
         this.id = id;
         this.semaphore = semaphore;
-        this.cdl = cdl;
+        this.cdd = cdl;
     }
 
-    public void run() {
+    public void run(){
         try {
             semaphore.acquire();
 
@@ -26,7 +26,9 @@ public class Downloader extends Thread {
                 sleep(1000);
             }
             semaphore.release();
+            cdd.countDown();
         } catch (Exception e) {
         }
+
     }
 }
